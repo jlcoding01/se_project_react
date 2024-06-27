@@ -1,0 +1,40 @@
+.header {
+  /* max-width: 1360px; */
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 28px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  color: black;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-and-location {
+  margin-left: 24px;
+}
+
+.header__btn-add {
+  margin-left: auto;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  color: black;
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 20px;
+}
+
+.header__user_avatar {
+  height: 40px;
+  width: 40px;
+}

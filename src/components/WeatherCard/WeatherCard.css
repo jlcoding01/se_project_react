@@ -1,0 +1,22 @@
+.weatherCard {
+  height: 80px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.weatherCard__degree {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-left: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  top: 20px;
+}
+
+.weatherCard__condition {
+  max-width: 100%;
+}
