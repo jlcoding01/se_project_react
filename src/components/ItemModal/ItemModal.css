@@ -1,0 +1,30 @@
+.modal__container_type_image {
+  padding: 0;
+  border-radius: 16px;
+  width: 498px;
+  overflow: hidden;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__image {
+  width: 498px;
+  height: 498px;
+  margin-bottom: 20px;
+}
+
+.modal__btn-close_image {
+  background-image: url(../../assets/close-button-image.svg);
+}
+
+.modal__img_title {
+  margin-top: 0px;
+  margin-left: 32px;
+  margin-bottom: 12px;
+}
+
+.modal__img_content {
+  margin-top: 0px;
+  margin-left: 32px;
+  margin-bottom: 32px;
+}
