@@ -6,10 +6,12 @@
   bottom: 0;
   right: 0;
   padding: 0 19px;
+  align-items: center;
   display: flex;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.4s, opacity 0.4s linear;
+  z-index: 999;
 }
 
 .modal_opened {
@@ -22,7 +24,8 @@
   flex-direction: column;
   margin: auto;
   padding: 28px;
-  width: 496px;
+  max-width: 496px;
+  width: 100%;
   border-radius: 20px;
   border: 1px;
   background-color: white;
@@ -33,15 +36,8 @@
   line-height: 20px;
 }
 
-/* .modal__container_type_form {
-  padding: 28px;
-  width: 496px;
-  border-radius: 20px;
-  
-} */
-
 .modal__btn-close {
-  background-image: url(../../assets/close\ button.svg);
+  background-image: url(../../assets/close-button.svg);
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
@@ -61,12 +57,17 @@
 
 .modal__btn-submit {
   padding: 8px 16px;
-  max-width: 124px;
+  width: 124px;
   border-radius: 4px;
   gap: 8px;
   border: none;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #000;
+  cursor: pointer;
+}
+
+.modal__btn-submit:hover {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal__form {
@@ -103,4 +104,25 @@
 .modal__input_select {
   display: flex;
   gap: 11px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+input[type="radio"]:checked + label {
+  color: #000;
+}
+
+@media screen and (max-width: 375px) {
+  .modal__container_form {
+    width: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .modal__btn-submit {
+    width: 100%;
+  }
 }

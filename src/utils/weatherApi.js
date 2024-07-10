@@ -18,6 +18,8 @@ export const processWeatherData = (data) => {
   result.temp = { F: data.main.temp };
   result.city = data.name;
   result.type = weatherType(result.temp.F);
+  result.daytime = dayTime(data);
+  result.weatherCondition = data.weather[0].main;
   return result;
 };
 
@@ -28,5 +30,16 @@ const weatherType = (temperature) => {
     return "warm";
   } else {
     return "cold";
+  }
+};
+
+const dayTime = (data) => {
+  if (
+    Date.now() / 1000 > data.sys.sunrise &&
+    Date.now() / 1000 < data.sys.sunset
+  ) {
+    return "day";
+  } else {
+    return "night";
   }
 };

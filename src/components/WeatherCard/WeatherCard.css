@@ -1,8 +1,10 @@
 .weatherCard {
+  max-width: 100%;
   height: 80px;
   border-radius: 12px;
   margin-bottom: 40px;
   position: relative;
+  overflow: hidden;
 }
 
 .weatherCard__degree {
@@ -18,5 +20,14 @@
 }
 
 .weatherCard__condition {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+}
+
+@media screen and (max-width: 375px) {
+  .weatherCard {
+    margin-bottom: 32px;
+  }
 }

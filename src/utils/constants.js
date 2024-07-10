@@ -47,3 +47,102 @@ export const coordinates = {
   latitude: 34.05,
   longitude: -118.24,
 };
+
+export const weatherCondition = [
+  {
+    daytime: "day",
+    condition: "Clear",
+    image: new URL(
+      "../assets/weather-conditions/day-sunny.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "day",
+    condition: "Clouds",
+    image: new URL(
+      "../assets/weather-conditions/day-cloudy.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "day",
+    condition: "Rain",
+    image: new URL("../assets/weather-conditions/day-rain.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "day",
+    condition: "Drizzle",
+    image: new URL("../assets/weather-conditions/day-rain.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "day",
+    condition: "Thunderstorm",
+    image: new URL(
+      "../assets/weather-conditions/day-storm.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "day",
+    condition: "Atmosphere",
+    image: new URL("../assets/weather-conditions/day-fog.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "day",
+    condition: "Snow",
+    image: new URL("../assets/weather-conditions/day-snow.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "night",
+    condition: "Clear",
+    image: new URL(
+      "../assets/weather-conditions/day-sunny.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "night",
+    condition: "Clouds",
+    image: new URL(
+      "../assets/weather-conditions/day-cloudy.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "night",
+    condition: "Rain",
+    image: new URL("../assets/weather-conditions/day-rain.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "night",
+    condition: "Drizzle",
+    image: new URL("../assets/weather-conditions/day-rain.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "night",
+    condition: "Thunderstorm",
+    image: new URL(
+      "../assets/weather-conditions/day-storm.svg",
+      import.meta.url
+    ).href,
+  },
+  {
+    daytime: "night",
+    condition: "Atmosphere",
+    image: new URL("../assets/weather-conditions/day-fog.svg", import.meta.url)
+      .href,
+  },
+  {
+    daytime: "night",
+    condition: "Snow",
+    image: new URL("../assets/weather-conditions/day-snow.svg", import.meta.url)
+      .href,
+  },
+];

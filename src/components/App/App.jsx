@@ -13,25 +13,94 @@ function App() {
     type: "",
     temp: { F: 999 },
     city: "",
+    daytime: "",
+    weatherCondition: "",
   });
+
+  const [activeModal, setActiveModal] = useState("");
+
+  const [cardData, setCardData] = useState({});
+
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+
+  const handleAddBtn = () => {
+    setActiveModal("add-garment");
+  };
+
+  const handleCloseModal = () => {
+    setActiveModal("");
+  };
+
+  const handleCardPreview = (data) => {
+    setActiveModal("preview");
+    setCardData(data);
+  };
+
+  const toggleMobileMenu = () => {
+    if (isMobileMenuOpened) {
+      setIsMobileMenuOpened(false);
+    } else {
+      setIsMobileMenuOpened(true);
+    }
+  };
+
+  const handelMenuAddBtn = () => {
+    setActiveModal("add-garment");
+    toggleMobileMenu();
+  };
 
   useEffect(() => {
     weatherApi(coordinates, APIKey)
       .then((data) => {
         const processedData = processWeatherData(data);
-        console.log(processedData);
         setWeatherData(processedData);
       })
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    const handleClickClose = (evt) => {
+      if (
+        evt.target !== evt.currentTarget &&
+        evt.target.classList.contains("modal_opened")
+      ) {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickClose);
+
+    window.addEventListener("keydown", handleEscClose);
+    return () => {
+      window.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("mousedown", handleClickClose);
+    };
+  }, []);
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header weatherData={weatherData} />
-        <Main weatherData={weatherData} />
+        <Header
+          handleAddBtn={handleAddBtn}
+          weatherData={weatherData}
+          toggleMobileMenu={toggleMobileMenu}
+          isMobileMenuOpened={isMobileMenuOpened}
+          handelMenuAddBtn={handelMenuAddBtn}
+        />
+        <Main weatherData={weatherData} handleCardPreview={handleCardPreview} />
         <Footer />
-        <ModalWithForm name="form" title="New garment" buttonText="Add Garment">
+        <ModalWithForm
+          type="form"
+          title="New garment"
+          buttonText="Add garment"
+          onClose={handleCloseModal}
+          activeModal={activeModal}
+        >
           <fieldset className="modal__fieldset">
             <div className="modal__input">
               <label className="modal__input_label">Name</label>
@@ -91,10 +160,10 @@ function App() {
           </fieldset>
         </ModalWithForm>
         <ItemModal
-          link="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
-          title="Cap"
-          name="image"
-          weather="hot"
+          type="image"
+          cardData={cardData}
+          handleCloseModal={handleCloseModal}
+          activeModal={activeModal}
         ></ItemModal>
       </div>
     </div>

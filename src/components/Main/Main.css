@@ -1,0 +1,27 @@
+.itemCard__header {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  margin-bottom: 34px;
+}
+
+.itemCard__container {
+  list-style-type: none;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, 325px);
+  grid-gap: 20px 20px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 375px) {
+  .itemCard__header {
+    font-size: 18px;
+  }
+
+  .itemCard__container {
+    grid-template-columns: repeat(2, 160px);
+    grid-gap: 15px 15px;
+  }
+}

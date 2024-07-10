@@ -1,17 +1,43 @@
 .header {
-  /* max-width: 1360px; */
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin: 0px 0px 28px;
+  margin-top: 32px;
+  margin-bottom: 28px;
   font-size: 20px;
   font-weight: 700;
   line-height: 25px;
-  color: black;
+  max-width: 100%;
+  position: relative;
+}
+
+.header__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.header__subject {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .header__logo {
   width: 89px;
   height: 40px;
+}
+
+.header__btn-menu {
+  display: none;
+}
+
+.header__modal_btn-close {
+  display: hidden;
 }
 
 .header__date-and-location {
@@ -21,10 +47,7 @@
 .header__btn-add {
   margin-left: auto;
   border: none;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 25px;
-  color: black;
+  cursor: pointer;
 }
 
 .header__user {
@@ -37,4 +60,108 @@
 .header__user_avatar {
   height: 40px;
   width: 40px;
+}
+
+.menu__modal {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (max-width: 765px) {
+  .header {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 16px;
+  }
+
+  .header__main {
+    flex-direction: column;
+    align-items: normal;
+  }
+
+  .header__logo-and-menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header__subject {
+    display: none;
+  }
+
+  .header__btn-menu {
+    display: block;
+    height: 44px;
+    width: 44px;
+    background: transparent url(../../assets/menu-button.svg) no-repeat center;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .menu__modal_user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
+  }
+
+  .menu__modal_user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
+  }
+
+  .menu__modal_btn-close {
+    display: block;
+    background-image: url(../../assets/menu-button-close.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 21px;
+    width: 21px;
+    position: absolute;
+    top: 11px;
+    right: 11px;
+  }
+
+  .header__date-and-location {
+    margin: 32px 0 0;
+  }
+
+  .menu__modal {
+    /* visibility: hidden;
+    opacity: 0; */
+    /* visibility: visible; */
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    height: 208px;
+    width: 100%;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .menu__modal_user-avatar {
+    height: 40px;
+    width: 40px;
+  }
+
+  .menu__modal__btn-add {
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }
