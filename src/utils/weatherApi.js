@@ -20,6 +20,7 @@ export const processWeatherData = (data) => {
   result.type = weatherType(result.temp.F);
   result.daytime = dayTime(data);
   result.weatherCondition = data.weather[0].main;
+  result.weatherId = data.weather[0].id;
   return result;
 };
 

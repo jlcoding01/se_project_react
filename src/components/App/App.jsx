@@ -15,6 +15,7 @@ function App() {
     city: "",
     daytime: "",
     weatherCondition: "",
+    weatherId: 0,
   });
 
   const [activeModal, setActiveModal] = useState("");
@@ -37,11 +38,7 @@ function App() {
   };
 
   const toggleMobileMenu = () => {
-    if (isMobileMenuOpened) {
-      setIsMobileMenuOpened(false);
-    } else {
-      setIsMobileMenuOpened(true);
-    }
+    setIsMobileMenuOpened((prev) => !prev);
   };
 
   const handelMenuAddBtn = () => {
@@ -71,6 +68,8 @@ function App() {
       ) {
         handleCloseModal();
       }
+
+      if (!activeModal) return;
     };
 
     document.addEventListener("mousedown", handleClickClose);
@@ -80,7 +79,7 @@ function App() {
       window.removeEventListener("keydown", handleEscClose);
       document.removeEventListener("mousedown", handleClickClose);
     };
-  }, []);
+  }, [activeModal]);
 
   return (
     <div className="page">
@@ -99,26 +98,32 @@ function App() {
           title="New garment"
           buttonText="Add garment"
           onClose={handleCloseModal}
-          activeModal={activeModal}
+          isOpen={activeModal === "add-garment"}
         >
           <fieldset className="modal__fieldset">
             <div className="modal__input">
-              <label className="modal__input_label">Name</label>
+              <label className="modal__input_label" htmlFor="name">
+                Name
+              </label>
               <input
                 type="text"
                 placeholder="Name"
                 name="name"
                 className="modal__input_user-input"
+                id="name"
                 required
               />
             </div>
             <div className="modal__input">
-              <label className="modal__input_label">Image</label>
+              <label className="modal__input_label" htmlFor="image">
+                Image
+              </label>
               <input
                 type="url"
                 placeholder="Image URL"
                 name="url"
                 className="modal__input_user-input"
+                id="image"
                 required
               />
             </div>
@@ -134,7 +139,9 @@ function App() {
                   className="modal__input_radio"
                   value="hot"
                 />
-                <label className="modal__input_label">Hot</label>
+                <label className="modal__input_label" htmlFor="hot">
+                  Hot
+                </label>
               </div>
               <div className="modal__input_select">
                 <input
@@ -144,7 +151,9 @@ function App() {
                   className="modal__input_radio"
                   value="warm"
                 />
-                <label className="modal__input_label">Warm</label>
+                <label className="modal__input_label" htmlFor="warm">
+                  Warm
+                </label>
               </div>
               <div className="modal__input_select">
                 <input
@@ -154,7 +163,9 @@ function App() {
                   className="modal__input_radio"
                   value="cold"
                 />
-                <label className="modal__input_label">Cold</label>
+                <label className="modal__input_label" htmlFor="cold">
+                  Cold
+                </label>
               </div>
             </div>
           </fieldset>
@@ -164,7 +175,7 @@ function App() {
           cardData={cardData}
           handleCloseModal={handleCloseModal}
           activeModal={activeModal}
-        ></ItemModal>
+        />
       </div>
     </div>
   );

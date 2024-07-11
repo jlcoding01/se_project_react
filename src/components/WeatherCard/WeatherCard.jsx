@@ -6,7 +6,9 @@ function WeatherCard({ weatherData }) {
   const currentCodition = weatherCondition.filter((item) => {
     return (
       item.daytime == weatherData.daytime &&
-      item.condition == weatherData.weatherCondition
+      // item.condition == weatherData.weatherCondition
+      weatherData.weatherId <= item.max &&
+      weatherData.weatherId >= item.min
     );
   });
 
