@@ -1,0 +1,23 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  max-width: 229px;
+}
+
+.sideBar_user {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.sideBar_user-avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.sideBar_user-info {
+  /* display: inline-block; */
+  white-space: nowrap;
+}

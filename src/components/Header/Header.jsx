@@ -2,6 +2,7 @@ import logo from "../../assets/wtwr_logo.svg";
 import avatar from "../../assets/avatar.svg";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 function Header({
   weatherData,
@@ -18,7 +19,10 @@ function Header({
     <header className="header">
       <div className="header__main">
         <div className="header__logo-and-menu">
-          <img className="header__logo" src={logo} alt="logo" />
+          <Link to="/">
+            <img className="header__logo" src={logo} alt="logo" />
+          </Link>
+
           <button
             className="header__btn-menu"
             type="button"
@@ -38,14 +42,19 @@ function Header({
         >
           + Add clothes
         </button>
-        <div className="header__user">
-          <p className="header__user_info">Terrence Tegegne</p>
-          <img
-            className="header__user_avatar"
-            src={avatar}
-            alt="user__avatar"
-          />
-        </div>
+        <Link
+          to="/profile"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <div className="header__user">
+            <p className="header__user_info">Terrence Tegegne</p>
+            <img
+              className="header__user_avatar"
+              src={avatar}
+              alt="user__avatar"
+            />
+          </div>
+        </Link>
       </div>
       <div
         className={`menu__modal ${

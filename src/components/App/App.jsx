@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
@@ -8,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { weatherApi, processWeatherData } from "../../utils/weatherApi.js";
 import { APIKey, coordinates } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
+import Profile from "../Profile/Profile.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -101,10 +103,22 @@ function App() {
             isMobileMenuOpened={isMobileMenuOpened}
             handelMenuAddBtn={handelMenuAddBtn}
           />
-          <Main
-            weatherData={weatherData}
-            handleCardPreview={handleCardPreview}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardPreview={handleCardPreview}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<Profile handleCardPreview={handleCardPreview} />}
+            />
+          </Routes>
+
           <Footer />
           <ModalWithForm
             type="form"

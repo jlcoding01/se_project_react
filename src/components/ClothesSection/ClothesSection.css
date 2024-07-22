@@ -1,0 +1,31 @@
+.clothesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 1015px;
+}
+
+.clothesSection__text {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.clothesSection__text_btn {
+  color: rgba(0, 0, 0, 0.6);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.clothesSection__container {
+  list-style-type: none;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: repeat(auto-fit, 325px);
+  grid-gap: 20px 20px;
+  justify-content: center;
+}

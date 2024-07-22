@@ -18,9 +18,9 @@ function Main({ weatherData, handleCardPreview }) {
       <div className="itemCard page__section">
         <ul className="itemCard__container">
           {defaultClothingItems
-            .filter((data) => {
-              return data.weather == weatherData.type;
-            })
+            // .filter((data) => {
+            //   return data.weather == weatherData.type;
+            // })
             .map((item) => (
               <ItemCard
                 key={item._id}
