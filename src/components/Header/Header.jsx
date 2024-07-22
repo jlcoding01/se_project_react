@@ -1,6 +1,7 @@
 import logo from "../../assets/wtwr_logo.svg";
 import avatar from "../../assets/avatar.svg";
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({
   weatherData,
@@ -28,32 +29,8 @@ function Header({
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      {/* <div
-        className={`header__subject header__modal ${
-          activeModal === "header-menu" && "modal_opened"
-        }`}
-      >
-        <button
-          className="header__modal_btn-close"
-          onClick={handleCloseModal}
-        ></button>
-        <button
-          className="header__btn-add"
-          type="button"
-          onClick={handleAddBtn}
-        >
-          + Add clothes
-        </button>
-        <div className="header__user">
-          <p className="header__user_info">Terrence Tegegne</p>
-          <img
-            className="header__user_avatar"
-            src={avatar}
-            alt="user__avatar"
-          />
-        </div>
-      </div> */}
       <div className="header__subject">
+        <ToggleSwitch />
         <button
           className="header__btn-add"
           type="button"

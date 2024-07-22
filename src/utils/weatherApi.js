@@ -15,7 +15,10 @@ export const weatherApi = ({ latitude, longitude }, APIKey) => {
 
 export const processWeatherData = (data) => {
   const result = {};
-  result.temp = { F: data.main.temp };
+  result.temp = {
+    F: data.main.temp,
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  };
   result.city = data.name;
   result.type = weatherType(result.temp.F);
   result.daytime = dayTime(data);

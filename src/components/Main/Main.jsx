@@ -2,13 +2,18 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants.js";
 import "./Main.css";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
+import React from "react";
 
 function Main({ weatherData, handleCardPreview }) {
+  const tempContext = React.useContext(CurrentTemperatureUnitContext);
+
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
       <h1 className="itemCard__header">
-        Today is {Math.round(weatherData.temp.F)}&deg; F / You may want to wear:
+        Today is {Math.round(weatherData.temp[tempContext.currentTempUnit])}
+        &deg; {tempContext.currentTempUnit} / You may want to wear:
       </h1>
       <div className="itemCard page__section">
         <ul className="itemCard__container">

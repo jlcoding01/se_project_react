@@ -1,8 +1,11 @@
-import cloudy from "../../assets/cloudy.svg";
 import "./WeatherCard.css";
 import { weatherCondition } from "../../utils/constants.js";
+import React from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function WeatherCard({ weatherData }) {
+  const tempContext = React.useContext(CurrentTemperatureUnitContext);
+
   const currentCodition = weatherCondition.filter((item) => {
     return (
       item.daytime == weatherData.daytime &&
@@ -22,7 +25,8 @@ function WeatherCard({ weatherData }) {
         className="weatherCard__condition"
       />
       <p className="weatherCard__degree">
-        {Math.round(weatherData.temp.F)}&deg; F
+        {Math.round(weatherData.temp[tempContext.currentTempUnit])}&deg;
+        {tempContext.currentTempUnit}
       </p>
     </div>
   );
