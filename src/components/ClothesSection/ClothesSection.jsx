@@ -1,8 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants.js";
 
-function ClothesSection({ handleCardPreview }) {
+function ClothesSection({ handleCardPreview, clothingItems }) {
   return (
     <div className="clothesSection">
       <div className="clothesSection__text">
@@ -11,17 +10,13 @@ function ClothesSection({ handleCardPreview }) {
       </div>
       <div className="clothesSection__cards">
         <ul className="clothesSection__container">
-          {defaultClothingItems
-            // .filter((data) => {
-            //   return data.weather == weatherData.type;
-            // })
-            .map((item) => (
-              <ItemCard
-                key={item._id}
-                item={item}
-                handleCardPreview={handleCardPreview}
-              />
-            ))}
+          {clothingItems.map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              handleCardPreview={handleCardPreview}
+            />
+          ))}
         </ul>
       </div>
     </div>

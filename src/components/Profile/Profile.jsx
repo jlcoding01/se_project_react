@@ -2,11 +2,14 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
-function Profile({ handleCardPreview }) {
+function Profile({ handleCardPreview, clothingItems }) {
   return (
     <div className="profile">
       <SideBar />
-      <ClothesSection handleCardPreview={handleCardPreview} />
+      <ClothesSection
+        handleCardPreview={handleCardPreview}
+        clothingItems={clothingItems}
+      />
     </div>
   );
 }

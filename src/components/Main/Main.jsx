@@ -1,11 +1,10 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants.js";
 import "./Main.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import React from "react";
 
-function Main({ weatherData, handleCardPreview }) {
+function Main({ weatherData, handleCardPreview, clothingItems }) {
   const tempContext = React.useContext(CurrentTemperatureUnitContext);
 
   return (
@@ -17,10 +16,10 @@ function Main({ weatherData, handleCardPreview }) {
       </h1>
       <div className="itemCard page__section">
         <ul className="itemCard__container">
-          {defaultClothingItems
-            // .filter((data) => {
-            //   return data.weather == weatherData.type;
-            // })
+          {clothingItems
+            .filter((data) => {
+              return data.weather == weatherData.type;
+            })
             .map((item) => (
               <ItemCard
                 key={item._id}

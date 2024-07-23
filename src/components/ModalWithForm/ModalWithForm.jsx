@@ -10,7 +10,7 @@ function ModalWithForm(props) {
       <div className={`modal__container modal__container_${props.type}`}>
         <button className="modal__btn-close" onClick={props.onClose} />
         <p className="modal__title">{props.title}</p>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={props.onSubmit}>
           {props.children}
           <button className="modal__btn-submit" type="submit">
             {props.buttonText}
