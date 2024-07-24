@@ -65,6 +65,21 @@ function Header({
           className="menu__modal_btn-close"
           onClick={toggleMobileMenu}
         ></button>
+
+        <Link
+          to="/profile"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <div className="menu__modal_user">
+            <p className="menu__modal_user-info">Terrence Tegegne</p>
+            <img
+              className="menu__modal_user-avatar"
+              src={avatar}
+              alt="user__avatar"
+            />
+          </div>
+        </Link>
+
         <button
           className="menu__modal__btn-add"
           type="button"
@@ -73,14 +88,7 @@ function Header({
           + Add clothes
         </button>
 
-        <div className="menu__modal_user">
-          <p className="menu__modal_user-info">Terrence Tegegne</p>
-          <img
-            className="menu__modal_user-avatar"
-            src={avatar}
-            alt="user__avatar"
-          />
-        </div>
+        <ToggleSwitch />
       </div>
     </header>
   );

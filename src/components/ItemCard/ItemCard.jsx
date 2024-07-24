@@ -9,7 +9,7 @@ function ItemCard({ item, handleCardPreview }) {
       }}
     >
       <h2 className="itemCard__title">{item.name}</h2>
-      <img src={item.link} alt={item.weather} className="itemCard__image" />
+      <img src={item.imageUrl} alt={item.weather} className="itemCard__image" />
     </li>
   );
 }

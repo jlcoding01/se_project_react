@@ -52,10 +52,12 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             type="text"
             placeholder="Name"
             name="name"
-            className="modal__input_user-input"
+            className="form__input modal__input_user-input"
             id="name"
             value={name}
             onChange={handleNameChange}
+            minLength={2}
+            maxLength={10}
             required
           />
         </div>
@@ -67,7 +69,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             type="url"
             placeholder="Image URL"
             name="url"
-            className="modal__input_user-input"
+            className="form__input modal__input_user-input"
             id="image"
             value={link}
             onChange={handleLinkChange}

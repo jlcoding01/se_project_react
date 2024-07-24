@@ -1,0 +1,48 @@
+.modal__container_type_confirmation {
+  max-width: 670px;
+  padding: 60px 151px;
+}
+
+.modal__confirmation_header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.modal__confirmation_btn-confirm {
+  border: none;
+  background: transparent;
+  margin-bottom: 20px;
+  color: #ff4d00;
+  cursor: pointer;
+}
+
+.modal__confirmation_btn-cancel {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  .modal__container_type_confirmation {
+    padding: 30px 75px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .modal__confirmation_header {
+    margin-bottom: 20px;
+  }
+  .modal__container_type_confirmation {
+    padding: 15px 37px;
+  }
+  .modal__btn-close {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .modal__container_type_confirmation {
+    padding: 10px 10px;
+  }
+}

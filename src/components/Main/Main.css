@@ -21,7 +21,7 @@
   }
 
   .itemCard__container {
-    grid-template-columns: repeat(2, 160px);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px 15px;
   }
 }
