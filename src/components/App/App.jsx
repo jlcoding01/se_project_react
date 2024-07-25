@@ -10,7 +10,6 @@ import { APIKey, coordinates } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-import { defaultClothingItems } from "../../utils/constants.js";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { getData, addData, deleteData } from "../../utils/api.js";
 
@@ -33,6 +32,8 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const [clothingItems, setClothingItems] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddBtn = () => {
     setActiveModal("add-garment");
@@ -65,28 +66,26 @@ function App() {
   };
 
   const handleAddItemSumbit = ({ name, weatherType, link }) => {
-    // clothingItems.forEach((obj) => {
-    //   obj._id += 1;
-    // });
-    // const item = {
-    //   _id: 0,
-    //   name: name,
-    //   weather: weatherType,
-    //   imageUrl: link,
-    // };
-    addData({ name, weatherType, link }).then((item) => {
-      console.log(item);
-      setClothingItems([item, ...clothingItems]);
-    });
+    addData({ name, weatherType, link })
+      .then((item) => {
+        console.log(item);
+        setClothingItems([item, ...clothingItems]);
+        setIsLoading(true);
+        handleCloseModal();
+      })
+      .catch(console.error);
   };
 
   const handleCardDelete = () => {
-    deleteData(cardData._id).then(() => {
-      const result = clothingItems.filter((item) => item._id !== cardData._id);
-      setClothingItems(result);
-    });
-
-    handleCloseModal();
+    deleteData(cardData._id)
+      .then(() => {
+        const result = clothingItems.filter(
+          (item) => item._id !== cardData._id
+        );
+        setClothingItems(result);
+        handleCloseModal();
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -107,6 +106,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!activeModal) return;
+
     const handleEscClose = (evt) => {
       if (evt.key === "Escape") {
         handleCloseModal();
@@ -119,8 +120,6 @@ function App() {
       ) {
         handleCloseModal();
       }
-
-      if (!activeModal) return;
     };
 
     document.addEventListener("mousedown", handleClickClose);
@@ -174,6 +173,7 @@ function App() {
             onCloseModal={handleCloseModal}
             isOpen={activeModal === "add-garment"}
             onAdditem={handleAddItemSumbit}
+            isLoading={isLoading}
           />
 
           <ItemModal

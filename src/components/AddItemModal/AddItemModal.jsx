@@ -1,33 +1,17 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
-  const [weatherType, setWeatherType] = useState("");
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleLinkChange = (e) => {
-    setLink(e.target.value);
-  };
-
-  const handleWeatherTypeChange = (e) => {
-    setWeatherType(e.target.value);
-  };
+const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
+  const { values, handleChange, setValues } = useForm({});
 
   const handleReset = () => {
-    setName("");
-    setLink("");
-    setWeatherType("");
+    setValues({});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdditem({ name, weatherType, link });
-    onCloseModal();
+    onAdditem(values);
   };
 
   useEffect(() => {
@@ -38,7 +22,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
     <ModalWithForm
       type="form"
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving" : "Add garment"}
       onClose={onCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -54,8 +38,8 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             name="name"
             className="form__input modal__input_user-input"
             id="name"
-            value={name}
-            onChange={handleNameChange}
+            value={values["name"] || ""}
+            onChange={handleChange}
             minLength={2}
             maxLength={10}
             required
@@ -68,11 +52,11 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
           <input
             type="url"
             placeholder="Image URL"
-            name="url"
+            name="link"
             className="form__input modal__input_user-input"
             id="image"
-            value={link}
-            onChange={handleLinkChange}
+            value={values["link"] || ""}
+            onChange={handleChange}
             required
           />
         </div>
@@ -84,11 +68,11 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             <input
               type="radio"
               id="hot"
-              name="weather"
+              name="weatherType"
               className="modal__input_radio"
               value="hot"
-              checked={weatherType === "hot"}
-              onChange={handleWeatherTypeChange}
+              checked={values["weatherType"] === "hot"}
+              onChange={handleChange}
             />
             <label className="modal__input_label" htmlFor="hot">
               Hot
@@ -98,11 +82,11 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             <input
               type="radio"
               id="warm"
-              name="weather"
+              name="weatherType"
               className="modal__input_radio"
               value="warm"
-              checked={weatherType === "warm"}
-              onChange={handleWeatherTypeChange}
+              checked={values["weatherType"] === "warm"}
+              onChange={handleChange}
             />
             <label className="modal__input_label" htmlFor="warm">
               Warm
@@ -112,11 +96,11 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal }) => {
             <input
               type="radio"
               id="cold"
-              name="weather"
+              name="weatherType"
               className="modal__input_radio"
               value="cold"
-              checked={weatherType === "cold"}
-              onChange={handleWeatherTypeChange}
+              checked={values["weatherType"] === "cold"}
+              onChange={handleChange}
             />
             <label className="modal__input_label" htmlFor="cold">
               Cold
