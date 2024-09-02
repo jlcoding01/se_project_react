@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 229px;
+  align-items: flex-start;
 }
 
 .sideBar_user {
@@ -15,11 +16,27 @@
 .sideBar_user-avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
 }
 
 .sideBar_user-info {
   /* display: inline-block; */
   white-space: nowrap;
+}
+
+.sideBar__btn-change-profile {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: 24px;
+  white-space: nowrap;
+}
+
+.sideBar__btn-logout {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: 8px;
 }
 
 @media screen and (max-width: 765px) {

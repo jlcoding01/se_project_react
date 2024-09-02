@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import logo from "../../assets/wtwr_logo.svg";
-import avatar from "../../assets/avatar.svg";
+// import avatar from "../../assets/avatar.svg";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { Link } from "react-router-dom";
 
 function Header({
   weatherData,
@@ -10,11 +12,19 @@ function Header({
   toggleMobileMenu,
   isMobileMenuOpened,
   handelMenuAddBtn,
+  isLoggedIn,
+  handleOpenRigisterModal,
+  handleOpenLoginModal,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const { name, avatar } = useContext(CurrentUserContext) || {};
+
+  const firstLetter = name?.charAt(0).toUpperCase();
+
   return (
     <header className="header">
       <div className="header__main">
@@ -35,26 +45,59 @@ function Header({
       </div>
       <div className="header__subject">
         <ToggleSwitch />
-        <button
-          className="header__btn-add"
-          type="button"
-          onClick={handleAddBtn}
+        <div
+          className={`header__default ${
+            isLoggedIn === true && "header__logged_in"
+          }`}
         >
-          + Add clothes
-        </button>
-        <Link
-          to="/profile"
-          style={{ color: "inherit", textDecoration: "none" }}
+          <button
+            className="header__btn-add"
+            type="button"
+            onClick={handleAddBtn}
+          >
+            + Add clothes
+          </button>
+          <Link
+            to="/profile"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <div className="header__user">
+              <p className="header__user_info">{name}</p>
+              <div className="header__user_placeholder">
+                {avatar ? (
+                  <img
+                    className="header__user_avatar"
+                    src={avatar}
+                    alt="user__avatar"
+                  />
+                ) : (
+                  firstLetter
+                )}
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        <div
+          className={`header__default ${
+            isLoggedIn === false && "header__logged_out"
+          }`}
         >
-          <div className="header__user">
-            <p className="header__user_info">Terrence Tegegne</p>
-            <img
-              className="header__user_avatar"
-              src={avatar}
-              alt="user__avatar"
-            />
-          </div>
-        </Link>
+          <button
+            className="header__btn-signup"
+            type="button"
+            onClick={handleOpenRigisterModal}
+          >
+            Sign Up
+          </button>
+          <button
+            className="header__btn-login"
+            type="button"
+            onClick={handleOpenLoginModal}
+          >
+            Log In
+          </button>
+        </div>
       </div>
       <div
         className={`menu__modal ${
@@ -71,7 +114,7 @@ function Header({
           style={{ color: "inherit", textDecoration: "none" }}
         >
           <div className="menu__modal_user">
-            <p className="menu__modal_user-info">Terrence Tegegne</p>
+            <p className="menu__modal_user-info">{name}</p>
             <img
               className="menu__modal_user-avatar"
               src={avatar}

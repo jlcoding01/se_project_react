@@ -12,9 +12,12 @@ function ModalWithForm(props) {
         <p className="modal__title">{props.title}</p>
         <form className="modal__form" onSubmit={props.onSubmit}>
           {props.children}
-          <button className="modal__btn-submit" type="submit">
-            {props.buttonText}
-          </button>
+          <div className="modal__form_btn">
+            <button className="modal__btn-submit" type="submit">
+              {props.buttonText}
+            </button>
+            <p className="modal__form_text">{props.redirectText}</p>
+          </div>
         </form>
       </div>
     </div>

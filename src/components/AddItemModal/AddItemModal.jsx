@@ -41,7 +41,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
             value={values["name"] || ""}
             onChange={handleChange}
             minLength={2}
-            maxLength={10}
+            maxLength={30}
             required
           />
         </div>

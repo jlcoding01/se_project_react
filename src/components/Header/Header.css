@@ -27,6 +27,19 @@
   margin: 0;
 }
 
+.header__default {
+  display: none;
+}
+
+.header__logged_in {
+  display: flex;
+}
+
+.header__logged_out {
+  display: flex;
+  gap: 20px;
+}
+
 .header__logo {
   width: 89px;
   height: 40px;
@@ -48,6 +61,21 @@
   margin-left: auto;
   border: none;
   cursor: pointer;
+  background: transparent;
+}
+
+.header__btn-signup {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.header__btn-login {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
 }
 
 .header__user {
@@ -57,9 +85,21 @@
   margin-left: 20px;
 }
 
+.header__user_placeholder {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header__user_avatar {
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
 
 .menu__modal {

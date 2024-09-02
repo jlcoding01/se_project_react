@@ -12,20 +12,26 @@ export const getData = () => {
   return request(`${baseUrl}/items`);
 };
 
-export const addData = ({ name, link, weatherType }) => {
+export const addData = (name, weatherType, link, token) => {
   return request(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: name,
-      imageUrl: link,
       weather: weatherType,
+      imageUrl: link,
     }),
   });
 };
 
-export const deleteData = (cardId) => {
+export const deleteData = (cardId, token) => {
   return fetch(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 };

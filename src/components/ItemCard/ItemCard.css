@@ -1,8 +1,16 @@
 .itemCard__element {
   max-width: 325px;
+  aspect-ratio: 1/1;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+}
+.itemCard__element_visible {
+  visibility: visible;
+}
+
+.itemCard__element_hidden {
+  visibility: hidden;
 }
 
 .itemCard__image {

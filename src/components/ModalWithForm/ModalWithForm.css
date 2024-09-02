@@ -59,9 +59,15 @@
   margin: 0;
 }
 
+.modal__form_btn {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
 .modal__btn-submit {
   padding: 8px 16px;
-  width: 124px;
+  /* width: 124px; */
   border-radius: 4px;
   margin-top: 32px;
   gap: 8px;
@@ -69,6 +75,11 @@
   color: #fff;
   background-color: #000;
   cursor: pointer;
+}
+
+.modal__form_text {
+  margin: 0;
+  opacity: 0.5;
 }
 
 .modal__btn-submit:hover {
