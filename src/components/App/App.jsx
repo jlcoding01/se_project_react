@@ -149,8 +149,8 @@ function App() {
     }
     auth.authorize(email, password).then((res) => {
       console.log(res);
-      if (res.jwt) {
-        localStorage.setItem("jwt", res.jwt);
+      if (res.token) {
+        localStorage.setItem("jwt", res.token);
         setCurrentUser(res.user);
         setIsLoggedIn(true);
         navigate("/");
