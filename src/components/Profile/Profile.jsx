@@ -7,6 +7,7 @@ function Profile({
   clothingItems,
   handleAddBtn,
   handleOpenEditProfileModal,
+  onCardLike,
 }) {
   return (
     <div className="profile">
@@ -15,6 +16,7 @@ function Profile({
         handleCardPreview={handleCardPreview}
         clothingItems={clothingItems}
         handleAddBtn={handleAddBtn}
+        handleLike={onCardLike}
       />
     </div>
   );

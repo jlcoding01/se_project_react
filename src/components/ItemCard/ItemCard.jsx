@@ -14,9 +14,6 @@ function ItemCard({ item, handleCardPreview, handleLike }) {
       className={`itemCard__element ${
         isOwn ? "itemCard__element_visible" : "itemCard__element_hidden"
       }`}
-      onClick={() => {
-        handleCardPreview(item);
-      }}
     >
       <div className="itemCard__title-and-btn">
         <h2 className="itemCard__title">{item.name}</h2>
@@ -29,7 +26,14 @@ function ItemCard({ item, handleCardPreview, handleLike }) {
         ></button>
       </div>
 
-      <img src={item.imageUrl} alt={item.weather} className="itemCard__image" />
+      <img
+        src={item.imageUrl}
+        alt={item.weather}
+        className="itemCard__image"
+        onClick={() => {
+          handleCardPreview(item);
+        }}
+      />
     </li>
   );
 }

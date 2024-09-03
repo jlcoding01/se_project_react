@@ -1,7 +1,12 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ handleCardPreview, clothingItems, handleAddBtn }) {
+function ClothesSection({
+  handleCardPreview,
+  clothingItems,
+  handleAddBtn,
+  handleLike,
+}) {
   return (
     <div className="clothesSection">
       <div className="clothesSection__text">
@@ -17,6 +22,7 @@ function ClothesSection({ handleCardPreview, clothingItems, handleAddBtn }) {
               key={item._id}
               item={item}
               handleCardPreview={handleCardPreview}
+              handleLike={handleLike}
             />
           ))}
         </ul>

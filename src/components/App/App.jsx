@@ -175,16 +175,15 @@ function App() {
     !isLiked
       ? addCardLike(id, jwt)
           .then((updateCard) => {
-            console.log(updateCard);
             setClothingItems((cards) => {
-              cards.map((item) => (item._id === id ? updateCard : item));
+              return cards.map((item) => (item._id === id ? updateCard : item));
             });
           })
           .catch(console.error)
       : removeCardLike(id, jwt)
           .then((updateCard) => {
             setClothingItems((cards) => {
-              cards.map((item) => (item._id === id ? updateCard : item));
+              return cards.map((item) => (item._id === id ? updateCard : item));
             });
           })
           .catch(console.error);
@@ -288,6 +287,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddBtn={handleAddBtn}
                       handleOpenEditProfileModal={handleOpenEditProfileModal}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
