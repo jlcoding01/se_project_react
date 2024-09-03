@@ -8,10 +8,14 @@ function Profile({
   handleAddBtn,
   handleOpenEditProfileModal,
   onCardLike,
+  handleLogout,
 }) {
   return (
     <div className="profile">
-      <SideBar handleOpenEditProfileModal={handleOpenEditProfileModal} />
+      <SideBar
+        handleOpenEditProfileModal={handleOpenEditProfileModal}
+        handleLogout={handleLogout}
+      />
       <ClothesSection
         handleCardPreview={handleCardPreview}
         clothingItems={clothingItems}

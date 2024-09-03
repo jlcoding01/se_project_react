@@ -135,6 +135,7 @@ function App() {
     auth
       .register(name, email, password, avatar)
       .then(() => {
+        setCurrentUser({ name, email, password, avatar });
         setIsLoggedIn(true);
         navigate("/");
         handleCloseModal();
@@ -156,6 +157,13 @@ function App() {
         handleCloseModal();
       }
     });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    navigate("/");
   };
 
   const handleChangeProfileData = ({ name, avatar }) => {
@@ -288,6 +296,7 @@ function App() {
                       handleAddBtn={handleAddBtn}
                       handleOpenEditProfileModal={handleOpenEditProfileModal}
                       onCardLike={handleCardLike}
+                      handleLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }

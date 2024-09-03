@@ -11,7 +11,10 @@ function request(url, options) {
 export const register = (name, email, password, avatar) => {
   return request(`${baseUrl}/signup`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ name, email, password, avatar }),
   });
 };
@@ -19,7 +22,10 @@ export const register = (name, email, password, avatar) => {
 export const authorize = (email, password) => {
   return request(`${baseUrl}/signin`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ email, password }),
   });
 };

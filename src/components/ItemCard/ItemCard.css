@@ -10,7 +10,7 @@
 }
 
 .itemCard__element_hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .itemCard__image {
