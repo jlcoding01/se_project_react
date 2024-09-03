@@ -9,7 +9,12 @@ function request(url, options) {
 }
 
 export const getData = () => {
-  return request(`${baseUrl}/items`);
+  return request(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };
 
 export const addData = (name, weatherType, link, token) => {
@@ -31,6 +36,26 @@ export const deleteData = (cardId, token) => {
   return fetch(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
     headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const addCardLike = (cardId, token) => {
+  return request(`${baseUrl}/items/${cardId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const removeCardLike = (cardId, token) => {
+  return request(`${baseUrl}/items/${cardId}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   });

@@ -17,7 +17,13 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ProtectedRoute from "../ProtectedRoute.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import * as auth from "../../utils/auth.js";
-import { getData, addData, deleteData } from "../../utils/api.js";
+import {
+  getData,
+  addData,
+  deleteData,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api.js";
 
 function App() {
   const jwt = localStorage.getItem("jwt");
@@ -159,10 +165,29 @@ function App() {
     auth
       .updateUserInfo(name, avatar, jwt)
       .then((res) => {
-        setCurrentUser(res.user);
+        setCurrentUser(res);
         handleCloseModal();
       })
       .catch(console.error);
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    !isLiked
+      ? addCardLike(id, jwt)
+          .then((updateCard) => {
+            console.log(updateCard);
+            setClothingItems((cards) => {
+              cards.map((item) => (item._id === id ? updateCard : item));
+            });
+          })
+          .catch(console.error)
+      : removeCardLike(id, jwt)
+          .then((updateCard) => {
+            setClothingItems((cards) => {
+              cards.map((item) => (item._id === id ? updateCard : item));
+            });
+          })
+          .catch(console.error);
   };
 
   useEffect(() => {
@@ -250,6 +275,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardPreview={handleCardPreview}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
