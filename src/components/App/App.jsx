@@ -101,22 +101,31 @@ function App() {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
   };
 
-  const handleAddItemSumbit = ({ name, weatherType, link }) => {
-    // const jwt = localStorage.getItem("jwt");
+  const handleToggleLogin = () => {
+    activeModal === "login"
+      ? handleOpenRigisterModal()
+      : handleOpenLoginModal();
+  };
 
-    addData(name, weatherType, link, jwt)
-      .then((item) => {
-        console.log(item);
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(handleCloseModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }
+
+  const handleAddItemSumbit = ({ name, weatherType, link }) => {
+    const makeRequest = () => {
+      return addData(name, weatherType, link, jwt).then((item) => {
         setClothingItems([item, ...clothingItems]);
-        setIsLoading(true);
-        handleCloseModal();
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(makeRequest);
   };
 
   const handleCardDelete = () => {
-    // const jwt = localStorage.getItem("jwt");
-
     deleteData(cardData._id, jwt)
       .then(() => {
         const result = clothingItems.filter(
@@ -132,31 +141,32 @@ function App() {
     if (!name || !email || !password || !avatar) {
       return;
     }
-    auth
-      .register(name, email, password, avatar)
-      .then(() => {
-        setCurrentUser({ name, email, password, avatar });
+    const makeRequest = () => {
+      return auth.register(name, email, password, avatar).then(() => {
+        setCurrentUser({ name, email, avatar });
         setIsLoggedIn(true);
         navigate("/");
-        handleCloseModal();
-      })
-      .catch(console.error);
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
     }
-    auth.authorize(email, password).then((res) => {
-      console.log(res);
-      if (res.token) {
-        localStorage.setItem("jwt", res.token);
-        setCurrentUser(res.user);
-        setIsLoggedIn(true);
-        navigate("/");
-        handleCloseModal();
-      }
-    });
+    const makeRequest = () => {
+      return auth.authorize(email, password).then((res) => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setCurrentUser(res.user);
+          setIsLoggedIn(true);
+          navigate("/");
+        }
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleLogout = () => {
@@ -170,13 +180,19 @@ function App() {
     if (!name || !avatar) {
       return;
     }
-    auth
-      .updateUserInfo(name, avatar, jwt)
-      .then((res) => {
+    // auth
+    //   .updateUserInfo(name, avatar, jwt)
+    //   .then((res) => {
+    //     setCurrentUser(res);
+    //     handleCloseModal();
+    //   })
+    //   .catch(console.error);
+    const makeRequest = () => {
+      return auth.updateUserInfo(name, avatar, jwt).then((res) => {
         setCurrentUser(res);
-        handleCloseModal();
-      })
-      .catch(console.error);
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -198,8 +214,6 @@ function App() {
   };
 
   useEffect(() => {
-    // const jwt = localStorage.getItem("jwt");
-
     if (!jwt) {
       return;
     }
@@ -331,18 +345,23 @@ function App() {
               onCloseModal={handleCloseModal}
               isOpen={activeModal === "signup"}
               handleRegistration={handleRegistration}
+              isLoading={isLoading}
+              handleToggleLogin={handleToggleLogin}
             />
 
             <LoginModal
               onCloseModal={handleCloseModal}
               isOpen={activeModal === "login"}
               handleLogin={handleLogin}
+              isLoading={isLoading}
+              handleToggleLogin={handleToggleLogin}
             />
 
             <EditProfileModal
               onCloseModal={handleCloseModal}
               isOpen={activeModal === "edit"}
               handleChangeProfileData={handleChangeProfileData}
+              isLoading={isLoading}
             />
           </div>
         </CurrentTemperatureUnitContext.Provider>

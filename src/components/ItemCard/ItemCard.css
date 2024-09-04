@@ -5,13 +5,13 @@
   overflow: hidden;
   position: relative;
 }
-.itemCard__element_visible {
+/* .itemCard__element_visible {
   visibility: visible;
 }
 
 .itemCard__element_hidden {
   display: none;
-}
+} */
 
 .itemCard__image {
   width: 100%;
@@ -29,10 +29,6 @@
 }
 
 .itemCard__title {
-  /* position: absolute;
-  top: 25px;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
   text-align: center;
   margin: 0;
   padding: 2px 12px;
@@ -46,9 +42,6 @@
 
 .itemCard__btn-like {
   padding: 0;
-  /* position: absolute;
-  top: 25px;
-  right: 40%; */
   background: url(../../assets/like-button.svg) transparent;
   background-size: cover;
   border: none;

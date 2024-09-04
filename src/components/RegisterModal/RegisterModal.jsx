@@ -1,9 +1,24 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const RegisterModal = ({ isOpen, onCloseModal, handleRegistration }) => {
+const RegisterModal = ({
+  isOpen,
+  onCloseModal,
+  handleRegistration,
+  isLoading,
+  handleToggleLogin,
+}) => {
   const { values, handleChange, setValues } = useForm({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (values.email && values.password && values.name && values.avatar) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [values]);
 
   const handleReset = () => {
     setValues({});
@@ -23,11 +38,13 @@ const RegisterModal = ({ isOpen, onCloseModal, handleRegistration }) => {
     <ModalWithForm
       type="form"
       title="Sign Up"
-      buttonText="Sign Up"
+      buttonText={isLoading ? "Saving" : "Sign Up"}
       redirectText="or Log In"
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      onClick={handleToggleLogin}
+      isFormValid={isFormValid}
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">

@@ -1,9 +1,18 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 
 const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
   const { values, handleChange, setValues } = useForm({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (values.name && values.link && values.weatherType) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [values]);
 
   const handleReset = () => {
     setValues({});
@@ -26,6 +35,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
       onClose={onCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      isFormValid={isFormValid}
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">

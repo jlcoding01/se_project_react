@@ -1,9 +1,25 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const LoginModal = ({ isOpen, onCloseModal, handleLogin }) => {
+const LoginModal = ({
+  isOpen,
+  onCloseModal,
+  handleLogin,
+  isLoading,
+  handleToggleLogin,
+}) => {
   const { values, handleChange, setValues } = useForm({});
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (values.email && values.password) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [values]);
 
   const handleReset = () => {
     setValues({});
@@ -23,11 +39,13 @@ const LoginModal = ({ isOpen, onCloseModal, handleLogin }) => {
     <ModalWithForm
       type="form"
       title="Log In"
-      buttonText="Log In"
+      buttonText={isLoading ? "Saving" : "Log In"}
       redirectText="or Sign Up"
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      onClick={handleToggleLogin}
+      isFormValid={isFormValid}
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">

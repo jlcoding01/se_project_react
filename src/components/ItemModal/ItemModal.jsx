@@ -12,9 +12,6 @@ function ItemModal({
   const { _id } = useContext(CurrentUserContext) || {};
 
   const isOwn = cardData.owner === _id;
-  // const modalDeleteButtonClassName = `modal__btn-delete ${
-  //   isOwn ? "modal__btn-delete_visible" : "modal__btn-delete-hidden"
-  // }`;
 
   return (
     <div

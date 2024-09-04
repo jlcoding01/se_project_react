@@ -5,16 +5,11 @@ import "./ItemCard.css";
 function ItemCard({ item, handleCardPreview, handleLike }) {
   const currentUser = useContext(CurrentUserContext) || {};
 
-  const isOwn = item.owner === currentUser._id;
   const isLiked = item.likes.some((id) => id === currentUser._id);
   const id = item._id;
 
   return (
-    <li
-      className={`itemCard__element ${
-        isOwn ? "itemCard__element_visible" : "itemCard__element_hidden"
-      }`}
-    >
+    <li className="itemCard__element">
       <div className="itemCard__title-and-btn">
         <h2 className="itemCard__title">{item.name}</h2>
         <button

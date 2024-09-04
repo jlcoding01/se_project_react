@@ -67,7 +67,6 @@
 
 .modal__btn-submit {
   padding: 8px 16px;
-  /* width: 124px; */
   border-radius: 4px;
   margin-top: 32px;
   gap: 8px;
@@ -77,12 +76,19 @@
   cursor: pointer;
 }
 
-.modal__form_text {
-  margin: 0;
-  opacity: 0.5;
+.modal__btn-submit:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: default;
 }
 
-.modal__btn-submit:hover {
+.modal__btn-toggle {
+  border: none;
+  opacity: 0.5;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal__btn-submit:hover:not(:disabled) {
   background-color: rgba(0, 0, 0, 0.6);
 }
 

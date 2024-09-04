@@ -10,13 +10,23 @@ function ModalWithForm(props) {
       <div className={`modal__container modal__container_${props.type}`}>
         <button className="modal__btn-close" onClick={props.onClose} />
         <p className="modal__title">{props.title}</p>
-        <form className="modal__form" onSubmit={props.onSubmit}>
+        <form className="modal__form" onSubmit={props.onSubmit} noValidate>
           {props.children}
           <div className="modal__form_btn">
-            <button className="modal__btn-submit" type="submit">
+            <button
+              className="modal__btn-submit"
+              type="submit"
+              disabled={!props.isFormValid}
+            >
               {props.buttonText}
             </button>
-            <p className="modal__form_text">{props.redirectText}</p>
+            <button
+              className="modal__btn-toggle"
+              type="button"
+              onClick={props.onClick}
+            >
+              {props.redirectText}
+            </button>
           </div>
         </form>
       </div>

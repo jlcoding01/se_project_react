@@ -7,6 +7,7 @@ const EditProfileModal = ({
   isOpen,
   onCloseModal,
   handleChangeProfileData,
+  isLoading,
 }) => {
   const { name, avatar } = useContext(CurrentUserContext) || {};
   const { values, handleChange, setValues } = useForm({});
@@ -28,7 +29,7 @@ const EditProfileModal = ({
     <ModalWithForm
       type="form"
       title="Change profile data"
-      buttonText="Save changes"
+      buttonText={isLoading ? "Saving" : "Save changes"}
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
