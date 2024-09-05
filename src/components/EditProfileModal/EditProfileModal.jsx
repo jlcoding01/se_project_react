@@ -1,6 +1,6 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const EditProfileModal = ({
@@ -11,6 +11,15 @@ const EditProfileModal = ({
 }) => {
   const { name, avatar } = useContext(CurrentUserContext) || {};
   const { values, handleChange, setValues } = useForm({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    if (values.name && values.avatar) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [values]);
 
   const handleReset = () => {
     setValues({ name, avatar });
@@ -33,6 +42,7 @@ const EditProfileModal = ({
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      isFormValid={isFormValid}
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">

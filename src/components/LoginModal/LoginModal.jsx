@@ -49,7 +49,7 @@ const LoginModal = ({
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="email">
+          <label className="modal__input_label" htmlFor="login-email">
             Email
           </label>
           <input
@@ -57,14 +57,14 @@ const LoginModal = ({
             placeholder="Email"
             name="email"
             className="form__input modal__input_user-input"
-            id="email"
+            id="login-email"
             value={values["email"] || ""}
             onChange={handleChange}
             required
           />
         </div>
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="password">
+          <label className="modal__input_label" htmlFor="login-password">
             Password
           </label>
           <input
@@ -72,7 +72,7 @@ const LoginModal = ({
             placeholder="Password"
             name="password"
             className="form__input modal__input_user-input"
-            id="password"
+            id="login-password"
             value={values["password"] || ""}
             onChange={handleChange}
             required
