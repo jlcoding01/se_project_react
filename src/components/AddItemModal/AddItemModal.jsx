@@ -39,7 +39,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="name">
+          <label className="modal__input_label" htmlFor="item-name">
             Name
           </label>
           <input
@@ -47,7 +47,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
             placeholder="Name"
             name="name"
             className="form__input modal__input_user-input"
-            id="name"
+            id="item-name"
             value={values["name"] || ""}
             onChange={handleChange}
             minLength={2}
@@ -56,7 +56,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
           />
         </div>
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="image">
+          <label className="modal__input_label" htmlFor="item-image">
             Image
           </label>
           <input
@@ -64,7 +64,7 @@ const AddItemModal = ({ isOpen, onAdditem, onCloseModal, isLoading }) => {
             placeholder="Image URL"
             name="link"
             className="form__input modal__input_user-input"
-            id="image"
+            id="item-image"
             value={values["link"] || ""}
             onChange={handleChange}
             required

@@ -46,7 +46,7 @@ const EditProfileModal = ({
     >
       <fieldset className="modal__fieldset">
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="name">
+          <label className="modal__input_label" htmlFor="profile-name">
             Name*
           </label>
           <input
@@ -54,7 +54,7 @@ const EditProfileModal = ({
             placeholder="Name"
             name="name"
             className="form__input modal__input_user-input"
-            id="name"
+            id="profile-name"
             value={values["name"] || ""}
             onChange={handleChange}
             minLength={2}
@@ -63,7 +63,7 @@ const EditProfileModal = ({
           />
         </div>
         <div className="modal__input">
-          <label className="modal__input_label" htmlFor="avatar">
+          <label className="modal__input_label" htmlFor="profile-avatar">
             Avatar*
           </label>
           <input
@@ -71,7 +71,7 @@ const EditProfileModal = ({
             placeholder="Avatar URL"
             name="avatar"
             className="form__input modal__input_user-input"
-            id="avatar"
+            id="profile-avatar"
             value={values["avatar"] || ""}
             onChange={handleChange}
             required
