@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build  && scp -r ./dist/* ljliu89@wtwr.showmyhomes.com:/home/ljliu89/frontend"
+    "deploy": "npm run build  && scp -r ./dist/* ftxftx123@wtwr.showmyhomes.com:/home/ftxftx123/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
